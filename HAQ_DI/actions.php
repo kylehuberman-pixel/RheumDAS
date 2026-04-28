@@ -17,11 +17,14 @@ if ($action == 'print') {
 
         echo send($emailTo, 'Health Assessment Questionnaire for Rheumatoid Arthritis')['message'];
     } else if ($action == 'specialist') {
+        $esc = function ($v) {
+            return htmlspecialchars((string)($v ?? ''), ENT_QUOTES, 'UTF-8');
+        };
         $html = "<ul>
-        <li>Name - " . $_POST['name'] . "</li>
-        <li>Last Name - " . $_POST['lname'] . "</li>
-        <li>Birthday - " . $_POST['birth'] . "</li>
-        <li>Healthcare - " . $_POST['healthcare'] . "</li>
+        <li>Name - " . $esc($_POST['name'] ?? '') . "</li>
+        <li>Last Name - " . $esc($_POST['lname'] ?? '') . "</li>
+        <li>Birthday - " . $esc($_POST['birth'] ?? '') . "</li>
+        <li>Healthcare - " . $esc($_POST['healthcare'] ?? '') . "</li>
     </ul>";
         $notification = "";
         foreach (explode(';', $_POST['practitionerEmail']) as $row) {
