@@ -1,6 +1,15 @@
 
-RewriteEngine On 
-RewriteCond %{HTTPS} off 
+RewriteEngine On
+RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 Redirect 301 /about /about.php
+
+# Defense-in-depth: never serve config.php as plaintext, even if the
+# PHP handler is misconfigured. config.php holds the Postmark token.
+<Files "config.php">
+    Require all denied
+</Files>
+<Files "config.example.php">
+    Require all denied
+</Files>
