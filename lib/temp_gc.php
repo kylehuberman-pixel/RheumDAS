@@ -1,9 +1,10 @@
 <?php
-// Probabilistic garbage collection for transient upload directories.
-// Same pattern as PHP's session GC: cheap on most requests, occasionally
-// sweeps stale files. Call from any endpoint that writes to a temp dir.
+// Garbage collection for transient upload directories.
+// Cheap (~1ms scandir on a small dir), so by default runs on every call.
+// Pass a probability < 1.0 to sample if the dir ever grows large enough
+// that a per-request scan becomes noticeable.
 
-function temp_gc($dir, $maxAgeSeconds = 3600, $probability = 0.01)
+function temp_gc($dir, $maxAgeSeconds = 3600, $probability = 1.0)
 {
     if ($probability < 1.0 && mt_rand() / mt_getrandmax() > $probability) {
         return;
