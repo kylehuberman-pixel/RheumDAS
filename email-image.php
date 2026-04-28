@@ -1,6 +1,9 @@
 <?php
 require_once 'config.php';
+require_once 'lib/csrf.php';
 require_once 'lib/temp_gc.php';
+
+csrf_check();
 
 define('UPLOAD_DIR', 'temp/');
 

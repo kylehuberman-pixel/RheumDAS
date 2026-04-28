@@ -1,5 +1,6 @@
 <?php
 
+require_once '../lib/csrf.php';
 include_once('./question.php');
 
 $sliders = array_pop(array_filter($questions, function ($item) {
@@ -22,6 +23,7 @@ $haq_di = count($scorse) ? array_sum($scorse) / count($scorse) : 0;
 
 <head>
     <title>HAQ_DI</title>
+    <?php csrf_meta(); ?>
 
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../css/tooltipsterv4.css" />
@@ -40,6 +42,7 @@ $haq_di = count($scorse) ? array_sum($scorse) / count($scorse) : 0;
     <div id="main" class="container">
         <div class="row">
             <form id="HAQ-DI" method="POST" action="actions.php" target="_blank">
+                <?php echo csrf_field(); ?>
                 <div>
                     <h1>Health Assessment Questionnaire (HAQ-DI)©</h1>
                     <p class="HAQ-DI-subtitle">Assessment</p>
@@ -166,6 +169,7 @@ $haq_di = count($scorse) ? array_sum($scorse) / count($scorse) : 0;
     <script>
         window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')
     </script>
+    <?php echo csrf_ajax_setup_script(); ?>
     <!-- Slider Pips -->
     <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
     <script src="../js/vendor/jquery.ui.slider-pips.js"></script>

@@ -1,3 +1,7 @@
+<?php
+require_once 'lib/csrf.php';
+csrf_check();
+?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -11,6 +15,7 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+        <?php csrf_meta(); ?>
 
         <!-- **** Favicons **** -->
         <!-- Windows 8 Tile -->
@@ -441,6 +446,7 @@
     <!-- jQuery -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+    <?php echo csrf_ajax_setup_script(); ?>
     <!-- Bootstrap -->
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/vendor/canvg/rgbcolor.js"></script> 

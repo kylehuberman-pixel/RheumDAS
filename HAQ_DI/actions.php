@@ -1,4 +1,7 @@
 <?php
+require_once '../lib/csrf.php';
+csrf_check();
+
 $action = isset($_POST['action']) ? $_POST['action'] : 'send';
 
 if ($action == 'print') {

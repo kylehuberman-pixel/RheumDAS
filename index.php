@@ -1,3 +1,4 @@
+<?php require_once 'lib/csrf.php'; ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -12,6 +13,7 @@
   <title>RheumDAS - Disease activity score calculator for Arthritis Care Providers</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <?php csrf_meta(); ?>
 
   <!-- **** Favicons **** -->
   <!-- Windows 8 Tile -->
@@ -111,6 +113,7 @@
     <div class="row">
 
       <form id="disease-activity-score-form" action="export-canvas.php" method="post">
+        <?php echo csrf_field(); ?>
 
 
         <div class="holder">

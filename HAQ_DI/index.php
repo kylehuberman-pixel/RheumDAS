@@ -1,3 +1,4 @@
+<?php require_once '../lib/csrf.php'; ?>
 <?php include_once('./question.php'); ?>
 <?php include_once('./practitioners.php'); ?>
 
@@ -15,6 +16,7 @@
     <title>RheumDAS - Disease activity score calculator for Arthritis Care Providers</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <?php csrf_meta(); ?>
 
     <!-- **** Favicons **** -->
     <!-- Windows 8 Tile -->
@@ -128,6 +130,7 @@
     <div id="main" class="container">
         <div class="row">
             <form id="HAQ-DI" method="POST" action="actions.php" target="_blank">
+                <?php echo csrf_field(); ?>
                 <div id="HAQ-DI-fixed-title">
                     <h1>Health Assessment Questionnaire (HAQ-DI)©</h1>
                     <p class="HAQ-DI-subtitle">Assessment</p>
@@ -306,6 +309,7 @@
     <script>
         window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')
     </script>
+    <?php echo csrf_ajax_setup_script(); ?>
     <!-- Bootstrap -->
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <!-- Tooltipster -->
