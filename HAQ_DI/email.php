@@ -8,7 +8,8 @@ function createFile($name)
 {
     ob_start();
     include 'pdf.php';
-    $path = 'save/' . $name . '.pdf';
+    $safeName = preg_replace('/[^A-Za-z0-9_-]/', '_', $name);
+    $path = 'save/' . $safeName . '.pdf';
 
     $dompdf = new Dompdf();
     $dompdf->loadHtml(ob_get_clean());
