@@ -7,9 +7,9 @@ use Dompdf\Dompdf;
 function createFile($name)
 {
     ob_start();
-    include 'pdf.php';
+    include __DIR__ . '/pdf.php';
     $safeName = preg_replace('/[^A-Za-z0-9_-]/', '_', $name);
-    $path = 'save/' . $safeName . '.pdf';
+    $path = __DIR__ . '/save/' . $safeName . '.pdf';
 
     $dompdf = new Dompdf();
     $dompdf->loadHtml(ob_get_clean());

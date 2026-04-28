@@ -16,7 +16,7 @@ RheumDAS — a PHP web app for rheumatology care providers. Calculates Disease A
 
 ## Conventions
 
-- Vendored libraries live under `libraries/` (DOMPDF active, PHPMailer present but no longer used). Don't introduce Composer unless there's a real reason.
+- Vendored libraries live under `libraries/` (currently just DOMPDF). Don't introduce Composer unless there's a real reason.
 - **Secrets always go in `config.php`** and are read by `require_once` at the top of any file that needs them. Never hardcode tokens, passwords, or API keys in source files.
 - `temp/` and `HAQ_DI/save/` are runtime scratch directories — they ship empty (just `.gitkeep`) and are written by the app at runtime.
 - PHP files use procedural style with `function send($to, $body)` patterns, returning associative arrays. Stick with that style for consistency with the existing codebase.
