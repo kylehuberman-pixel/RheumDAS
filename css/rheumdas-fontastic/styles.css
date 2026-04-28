@@ -1,0 +1,114 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: "rheumdas";
+  src: url("fonts/rheumdas.eot");
+  src: url("fonts/rheumdas.eot?#iefix") format("embedded-opentype"),
+    url("fonts/rheumdas.woff") format("woff"),
+    url("fonts/rheumdas.ttf") format("truetype"),
+    url("fonts/rheumdas.svg#rheumdas") format("svg");
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+[data-icon]:before {
+  font-family: "rheumdas" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  font-family: "rheumdas" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-help-circled:before {
+  content: "\61";
+}
+
+.icon-check:before {
+  content: "\62";
+}
+
+.icon-x:before {
+  content: "\63";
+}
+
+#general-menu {
+  background-color: #4ACEA2;
+  display: flex;
+}
+
+#general-menu .row>*:hover,
+#general-menu .row>*.active {
+  color: #4ACEA2;
+  background-color: white;
+  font-weight: 900;
+}
+
+#general-menu .row>a {
+  cursor: pointer;
+}
+
+#general-menu .row>* {
+  height: 100%;
+  width: auto;
+  color: white;
+  font-size: 17px;
+  display: inline-block;
+  padding: 14px;
+}
+
+#general-menu .row {
+  display: flex;
+}
+
+#general-menu {
+  height: 50px;
+  margin-top: -20px;
+  position: relative;
+  z-index: 999999;
+  margin-bottom: 15px;
+}
+
+@media only screen and (max-width: 980px) {
+  #general-menu .row>* {
+    padding-left: 5px;
+    font-size: 14px;
+    padding-right: 5px;
+  }
+}
+
+.popup-notify-in-top.error {
+  background-color: rgba(237, 40, 26, 0.8);
+}
+
+.popup-notify-in-top.success {
+  background-color: rgba(106, 196, 92, 0.8);
+}
+
+.popup-notify-in-top {
+  padding: 12px;
+  min-width: 150px;
+  color: white;
+  text-align: center;
+  width: 100%;
+  max-width: 200px;
+  margin: 0 auto;
+}

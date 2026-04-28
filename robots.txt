@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /temp/*
+Disallow: /temp
+
+#Sitemap Reference
+Sitemap:https://rheumdas.com/sitemap.xml

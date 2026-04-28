@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!-- <meta http-equiv="X-UA-Compatible" content="IE=8;FF=3;OtherUA=4" /> -->
+        <title>Disease Activity Assessment</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+
+        <!-- **** Favicons **** -->
+        <!-- Windows 8 Tile -->
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="images/favicons/alberta-rheumatology-favicon-144x144.png">
+        <!-- For iPad with high-resolution Retina display running iOS ≥ 7: -->
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="images/favicons/alberta-rheumatology-favicon-152x152.png">
+        <!-- For iPad with high-resolution Retina display running iOS ≤ 6: -->
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/favicons/alberta-rheumatology-favicon-144x144.png">
+        <!-- For iPhone with high-resolution Retina display running iOS ≥ 7: -->
+        <link rel="apple-touch-icon-precomposed" sizes="120x120" href="images/favicons/alberta-rheumatology-favicon-120x120.png">
+        <!-- For iPhone with high-resolution Retina display running iOS ≤ 6: -->
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/favicons/alberta-rheumatology-favicon-114x114.png">
+        <!-- For first- and second-generation iPad: -->
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/favicons/alberta-rheumatology-favicon-72x72.png">
+        <!-- Everyone else -->
+        <link rel="icon" href="images/favicons/alberta-rheumatology-favicon-32x32.png" sizes="32x32">
+
+        <!-- Fonts -->
+        <link type="text/css" rel="stylesheet" href="http://fast.fonts.net/cssapi/cacc2a75-dfca-4d8a-809d-a6cf299fc224.css"/>
+        <link rel="stylesheet" href="css/rheumdas-fontastic/styles.css">
+
+        <!-- Stylesheets -->
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="style.css">
+
+        <!-- Scripts -->
+        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+
+        <?php 
+          $export_type = isset($_POST['export-type']) ? htmlspecialchars($_POST['export-type']) : '';
+          $email_address = isset($_POST['email-address']) ? htmlspecialchars($_POST['email-address']) : '';
+          // echo 'Export type = ' . $export_type . '<br>';
+        ?>
+
+    </head>
+    <body class="export-template">
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <?php 
+
+          $tenderJoints = isset($_POST['tender-joint-list']) ? htmlspecialchars($_POST['tender-joint-list']) : '';
+          $swollenJoints = isset($_POST['swollen-joint-list']) ? htmlspecialchars($_POST['swollen-joint-list']) : '';
+          $tenderswollenJoints = isset($_POST['tenderswollen-joint-list']) ? htmlspecialchars($_POST['tenderswollen-joint-list']) : '';
+
+          $pt_name = isset($_POST['pt-name']) ? htmlspecialchars($_POST['pt-name']) : '';
+          $pt_id = isset($_POST['pt-id']) ? htmlspecialchars($_POST['pt-id']) : '';
+
+        ?>
+
+        <div id="page" class="container">
+          <header id="site-header">
+            <h1>Disease Activity Assessment</h1>
+            <?php if(!empty($pt_name)): ?>
+              <p><span class="label">Patient name:</span> <?php echo $pt_name; ?></p>
+            <?php endif; ?>
+            <?php if(!empty($pt_id)): ?>
+              <p><span class="label">Patient ID:</span> <?php echo $pt_id; ?></p>
+            <?php endif; ?>
+            <div class="circle"></div>
+          </header>
+    
+          <div class="row">
+
+            <section class="box medium homunculus">
+              
+              <p id="pngHolder"></p>
+              <canvas id="canvas" width="369" height="588"></canvas>
+
+              <div id="svg">
+                <svg id="homunculus" version="1.1" x="0px" y="0px"
+                  viewBox="320.352 0 1863.187 2967.297"
+                 enable-background="new 320.352 0 1863.187 2967.297" xml:space="preserve">
+                <g id="Layer_1_1_">
+                  <g id="Outline">
+                    <g>
+                      <path fill="#949494" d="M457.924,1095.891v55.181h-26.272v-141.225h43.07c9.636,0,17.888,0.994,24.758,2.979
+                        c6.869,1.987,12.501,4.771,16.896,8.352c4.395,3.582,7.618,7.862,9.669,12.843c2.051,4.981,3.076,10.467,3.076,16.457
+                        c0,4.753-0.7,9.246-2.1,13.479c-1.401,4.231-3.418,8.072-6.055,11.523s-5.894,6.479-9.767,9.082
+                        c-3.875,2.605-8.287,4.688-13.234,6.251c3.321,1.892,6.185,4.591,8.595,8.106l35.355,52.151H518.28
+                        c-2.28,0-4.216-0.454-5.811-1.365c-1.596-0.911-2.947-2.214-4.053-3.907l-29.69-45.219c-1.108-1.692-2.329-2.896-3.662-3.613
+                        c-1.335-0.716-3.306-1.074-5.909-1.074L457.924,1095.891L457.924,1095.891z M457.924,1077.041h16.408
+                        c4.948,0,9.262-0.618,12.941-1.855c3.678-1.235,6.706-2.946,9.083-5.128c2.376-2.181,4.151-4.77,5.323-7.765
+                        c1.172-2.994,1.758-6.282,1.758-9.864c0-7.162-2.361-12.663-7.081-16.506c-4.722-3.841-11.932-5.762-21.633-5.762h-16.799
+                        V1077.041z"/>
+                    </g>
+                    <g>
+                      <path fill="#949494" d="M2008.724,1129.389h56.549v21.682h-82.82v-141.224h26.271V1129.389z"/>
+                    </g>
+                    <g>
+                      <path fill="none" stroke="#050708" stroke-width="8" stroke-miterlimit="10" d="M736.838,2673.618c0,0-12,28.7-16.667,43.368
+                        c-4.667,14.666-13.333,29.334-13.333,29.334s-14.667,30.666-18,40.666s-20,30-20,30s-16.139,16-22.068,27.334
+                        c-5.931,11.332-13.932,22.431-19.932,30.882c0,0-36.251,68.13,26.667,77.118c56,8,95.333-30,95.333-30
+                        s35.333-33.598,69.333-108.8s80.943-80.97,103.277-104.175c0,0,33.162-33.477,100.495-123.479
+                        c34.028-45.484,83.227-92.217,93.894-100.883s162.075-116.246,99.597-300.613c0,0-16.075-61.407-18.075-69.729
+                        s-27.188-90.86-15.188-203.258c12-112.398,31.333-247.733,24-292.399l-7.237-142.838c0,0,17.528-228.021,34.122-267.025
+                        c16.595-39.005,24.657,285.027,19.125,312.03s-6.687,267.616,1.733,330.033c8.922,66.136,8.922,66.136,8.922,66.136"/>
+                      <path fill="none" stroke="#050708" stroke-width="8" stroke-miterlimit="10" d="M1081.634,657.066c0,0,34.192,168.375,0,300.367
+                        c-34.19,131.994-53.689,317.971-31.19,452.222c22.498,134.251,28.499,198.747,25.499,234.745s0,202.487,12,263.984
+                        s-3.761,146.993-19.13,167.992c0,0-78.641,100.605-181.307,166.605s-158,98-181.333,113.334s-28.667,16.668-39.333,21.334
+                        s-126,62.666-151.333,86.666s-72.394,69.321-16.667,101.032"/>
+                      <path fill="none" stroke="#050708" stroke-width="8" stroke-miterlimit="10" d="M1387.838,657.066c0,0-25.786,220.775,1,358.256
+                        c26.785,137.479,31.369,262.145,15,417c-16.368,154.854-30.02,186.676-25.791,239.099c4.229,52.423-8.229,252.207-14.395,318.341
+                        c-6.164,66.135,25.216,105.814,46.771,124.883c0,0,131.817,173.846,416.062,265.391
+                        c170.497,54.911,137.776,115.911,81.024,107.814"/>
+                      <path fill="none" stroke="#050708" stroke-width="8" stroke-miterlimit="10" d="M1660.207,2583.801
+                        c0,0,22.834,33.18,40.983,47.995c18.147,14.817,56.036,54.312,99.255,99.306c40.139,41.789,32.021,31.412,40.139,41.789
+                        c19.784,25.303-1.283,93.015-58.33,99.588c-79.374,9.149-97.901-44.013-131.094-103.678
+                        c-33.189-59.666-83.214-111.619-110.378-127.867c-27.164-16.246-56.22-71.455-78.99-98.225
+                        c-22.77-26.771-89.145-102.646-130.776-124.727c-41.631-22.08-83.681-53.351-92.078-116.07
+                        c-8.291-61.92-11.504-95.277,19.306-201.205c31.532-108.411,9.563-136.938,4.596-183.385"/>
+                      <path fill="none" stroke="#050708" stroke-width="8" stroke-miterlimit="10" d="M1786.688,2425.941
+                        c0,0,81.136,45.969,138.054,70.555c56.917,24.584,40.014,67.385,22.752,74.548c-17.263,7.163-46.056-5.126-46.056-5.126"/>
+                      <path fill="none" stroke="#050708" stroke-width="8" stroke-miterlimit="10" d="M1756.632,2484.988
+                        c0,0,81.188,51.207,138.132,78.607c56.946,27.402,40.092,74.979,22.838,82.924c-17.254,7.944-46.061-5.752-46.061-5.752"/>
+                      <path fill="none" stroke="#050708" stroke-width="8" stroke-miterlimit="10" d="M1694.552,2525.977
+                        c0,0,94.083,93.058,167.377,117.352c59.986,19.884,37.396,70.718,22.837,82.922c-16.711,14.011-52.815,3.707-52.815,3.707
+                        s-27.524-8.255-45.54-20.208"/>
+                      <path fill="none" stroke="#050708" stroke-width="8" stroke-miterlimit="10" d="M1278.505,367.989
+                        c-55.333,29.333-92.333-49.333-96-54.333s-46.992-85.255-55-96.667c-7.331-10.447-10.381-22.511-11-26.333
+                        c-4.669-28.847,16.667-36,16.667-36c-3.333-48.667,18.667-139.667,138.667-136.333c166.938,4.637,112,196,112,196
+                        s-35.521,68.591-75,134c-12.415,20.567,10,85,59,91c0,0,97,10,119,172s32,215,56,267s59,176,77,235s111,192,182,244
+                        s90.257,74.635,154,169c32.461,48.056,94.646,99.812,160,134c65,34,66,68,9,74c0,0-68.216,3.437-111-34
+                        c-32-28-43.976-17.576-69-20c0,0-27-4-36-14c0,0,37.75,98.176,83.5,188c32.808,64.411,74.392,123.418,87.5,144c0,0,21,38-3,55
+                        s-46-18-53-25s-87.454-117.424-120-173c-27.237-46.511-18.543-34.307-31-51.5c-5.808-8.019-23-19-19,7s25.184,97.462,46,145.5
+                        c19.5,45,45.945,94.444,51,101.605c5.981,8.479,18,30.395,18,30.395s12,26-2,34s-40-3-54-19s-79.488-104.986-116-213
+                        c-24-71-37-26-37-21c0,0,2,78,13,119s24,85,24,85s18,63,0,68s-41-3-51-37s-54-217.5-54-217.5s-6.5-33-13-2
+                        c-6.685,31.88-9,97.5-9,97.5s-1.891,98.237-7,113c-4.5,13-26,20-35-13s-14-80-14-80s-4-51-3-104s-2-92-10-141s-38-234-40-252
+                        s-14.5-81.5,6-182c0,0,14-81-22-164s-83.747-166.524-100-257c-15-83.5-20-81-23-92s-38-110-36-132"/>
+                      <path fill="none" stroke="#050708" stroke-width="8" stroke-miterlimit="10" d="M1196.505,344.655
+                        c0,0,11.333,68.333-48.667,88.667c0,0-98.333,23.001-124.667,106.667c-14.467,45.964-14.667,72.334-15.333,96.667
+                        c0,0,1.666,30.333-16.667,80.333s-27.667,88.667-32,98.667s-38.667,134.667-41.667,150.667s-35.333,127.333-39.667,137.333
+                        s-34.667,69.667-34.667,69.667s-106,143.333-159.334,171.333s-137.924,85.036-191.667,198.667c0,0-21,37.002-36.333,50.668
+                        s-53.385,60.922-108.333,97.333c-27.667,18.333,2.667,44.666,10.333,45.666c0,0,41,12.667,89.667-16.667c0,0,73-47,84.333-47
+                        s4.333,15,4.333,15l-85,287.001c0,0-16.637,82.218,11.333,89.999c7.667,2.133,17.667-2.667,22.333-11c0,0,36.333-64,51-110
+                        s52.667-147.667,70.667-164.334s-16.667,111.334-21,128.001s-24,89.334-22,128.667s7.333,72.142,27.667,72
+                        c0,0,23.334,7,31.667-41.667s41-169.333,41-169.333l18-59.334c0,0,25.668-57.334,23.001-6.667s-3.13,180.435,3,218.667
+                        c7.162,44.671,10,64.569,33.665,64.319c13.666-0.146,26.771-12.985,25.218-45.985c-1.551-33-4.217-195.001,12.116-225.334
+                        s18-9.334,21.667,3s32.668,166,32.668,166s10,41,32.333,44.667c14.45,2.373,20.667-28.001,18.667-45.667
+                        s-23.001-207-17.668-247.333l26.112-131.825c0,0,18.002-144.015,0-246.025c-18.002-102.01,3-138.222,27.002-198.02
+                        s45.005-129.013,72.007-171.017s63.006-150.017,69.007-189.021s12.002-78.008,18.002-90.009s6-12.001,6-12.001"/>
+                      <path fill="none" stroke="#050708" stroke-width="8" stroke-miterlimit="10" d="M1158.438,130.975c0,0,38.921,59.997,113.4,12
+                        c62.795-40.467,74.09-26.999,74.09-26.999"/>
+                      <path fill="none" stroke="#050708" stroke-width="8" stroke-miterlimit="10" d="M1325.954,115.735c0,0,0.474,25.701,40.972,21.97
+                        "/>
+                      <path fill="none" stroke="#050708" stroke-width="8" stroke-miterlimit="10" d="M1183.936,216.471c0,0,13.5,10.5,29.998,7.5"/>
+                      <path fill="none" stroke="#050708" stroke-width="8" stroke-miterlimit="10" d="M1297.93,224.51c0,0,25.498,2.46,35.998-8.039"/>
+                      <path fill="none" stroke="#050708" stroke-width="8" stroke-miterlimit="10" d="M1243.933,316.966"/>
+                      
+                        <line fill="none" stroke="#050708" stroke-width="8" stroke-miterlimit="10" x1="1252.182" y1="322.966" x2="1243.933" y2="316.966"/>
+                      <path fill="none" stroke="#050708" stroke-width="8" stroke-miterlimit="10" d="M632.838,2472.53
+                        c0,0-77.333,64.073-124.667,92.37s-52.667,76.964-39.333,94.297s44,15.332,53.333,12.666"/>
+                      <path fill="none" stroke="#050708" stroke-width="8" stroke-miterlimit="10" d="M646.769,2563.92
+                        c0,0-73.653,72.926-119.994,106.736c-46.342,33.81-46.325,82.701-30.358,98.262c15.967,15.559,47.871,9.843,57.343,6.064"/>
+                      <path fill="none" stroke="#050708" stroke-width="8" stroke-miterlimit="10" d="M709.505,2592.32c0,0-60,87.999-86,110.666
+                        s-122.997,105.333-75.832,138s89.832-24.666,105.832-37.333l31.333-24.451"/>
+                    </g>
+                  </g>
+                  <g id="Joints">
+                    <path fill="none" stroke="#050708" stroke-width="10" stroke-miterlimit="10" d="M1173.908,493.957c0,0,27,1.5,31.499,15"/>
+                    <path fill="none" stroke="#050708" stroke-width="10" stroke-miterlimit="10" d="M1314.152,493.957c0,0-27,1.5-31.499,15"/>
+                    
+                    <circle id="j1" class="joint das28" fill="#FFFFFF" stroke="#427FD5" stroke-width="10" stroke-miterlimit="10" cx="1077.311" cy="501.956" r="64"/>
+                    <circle id="j2" class="joint das28" fill="#FFFFFF" stroke="#427FD5" stroke-width="10" stroke-miterlimit="10" cx="1410.912" cy="501.956" r="64"/>
+                    <circle id="j3" class="joint das28" fill="#FFFFFF" stroke="#427FD5" stroke-width="10" stroke-miterlimit="10" cx="1476.912" cy="825.955" r="64"/>
+                    <circle id="j4" class="joint das28" fill="#FFFFFF" stroke="#427FD5" stroke-width="10" stroke-miterlimit="10" cx="1139.311" cy="1575.821" r="64"/>
+                    
+                    <ellipse id="j5" class="joint das28" fill="#FFFFFF" stroke="#427FD5" stroke-width="10" stroke-miterlimit="10" cx="535.398" cy="1575.821" rx="47.925" ry="64"/>
+                    <ellipse id="j6" class="joint das28" fill="#FFFFFF" stroke="#427FD5" stroke-width="10" stroke-miterlimit="10" cx="1934.527" cy="1575.821" rx="47.925" ry="64"/>
+
+                    <circle id="j7" class="joint das28" fill="#FFFFFF" stroke="#427FD5" stroke-width="10" stroke-miterlimit="10" cx="1319.427" cy="1575.822" r="64"/>
+                    <circle id="j8" class="joint das28" fill="#FFFFFF" stroke="#427FD5" stroke-width="10" stroke-miterlimit="10" cx="2047.375" cy="1670.82" r="38"/>
+                    <circle id="j9" class="joint das28" fill="#FFFFFF" stroke="#427FD5" stroke-width="10" stroke-miterlimit="10" cx="1886.602" cy="1746.82" r="38"/>
+                    <circle id="j10" class="joint das28" fill="#FFFFFF" stroke="#427FD5" stroke-width="10" stroke-miterlimit="10" cx="1803.398" cy="1806.82" r="38"/>
+                    <circle id="j11" class="joint das28" fill="#FFFFFF" stroke="#427FD5" stroke-width="10" stroke-miterlimit="10" cx="1723.104" cy="1844.82" r="38"/>
+                    <circle id="j12" class="joint das28" fill="#FFFFFF" stroke="#427FD5" stroke-width="10" stroke-miterlimit="10" cx="1643.474" cy="1844.82" r="38"/>
+                    <circle id="j13" class="joint das28" fill="#FFFFFF" stroke="#427FD5" stroke-width="10" stroke-miterlimit="10" cx="747.979" cy="1784.82" r="38"/>
+                    <circle id="j14" class="joint das28" fill="#FFFFFF" stroke="#427FD5" stroke-width="10" stroke-miterlimit="10" cx="660.688" cy="1768.82" r="38"/>
+                    <circle id="j15" class="joint das28" fill="#FFFFFF" stroke="#427FD5" stroke-width="10" stroke-miterlimit="10" cx="573.398" cy="1730.82" r="38"/>
+                    <circle id="j16" class="joint das28" fill="#FFFFFF" stroke="#427FD5" stroke-width="10" stroke-miterlimit="10" cx="535.398" cy="1834.82" r="38"/>
+                    <circle id="j17" class="joint das28" fill="#FFFFFF" stroke="#427FD5" stroke-width="10" stroke-miterlimit="10" cx="435.221" cy="1672.821" r="38"/>
+                    <circle id="j18" class="joint das28" fill="#FFFFFF" stroke="#427FD5" stroke-width="10" stroke-miterlimit="10" cx="633.311" cy="1872.82" r="38"/>
+                    <circle id="j19" class="joint das28" fill="#FFFFFF" stroke="#427FD5" stroke-width="10" stroke-miterlimit="10" cx="736.688" cy="1891.322" r="38"/>
+                    <circle id="j20" class="joint das28" fill="#FFFFFF" stroke="#427FD5" stroke-width="10" stroke-miterlimit="10" cx="846.262" cy="1891.322" r="38"/>
+                    <circle id="j21" class="joint das28" fill="#FFFFFF" stroke="#427FD5" stroke-width="10" stroke-miterlimit="10" cx="832.688" cy="1796.82" r="38"/>
+                    <circle id="j22" class="joint das28" fill="#FFFFFF" stroke="#427FD5" stroke-width="10" stroke-miterlimit="10" cx="1641.474" cy="1955.322" r="38"/>
+                    <circle id="j23" class="joint das28" fill="#FFFFFF" stroke="#427FD5" stroke-width="10" stroke-miterlimit="10" cx="1739.474" cy="1955.322" r="38"/>
+                    <circle id="j24" class="joint das28" fill="#FFFFFF" stroke="#427FD5" stroke-width="10" stroke-miterlimit="10" cx="1848.312" cy="1917.322" r="38"/>
+                    <circle id="j25" class="joint das28" fill="#FFFFFF" stroke="#427FD5" stroke-width="10" stroke-miterlimit="10" cx="1952.682" cy="1853.322" r="38"/>
+                    <g>
+                      <circle id="j26" class="joint" fill="#FFFFFF" stroke="#707070" stroke-width="10" stroke-miterlimit="10" cx="1122.311" cy="1229.649" r="64"/>
+                      <circle id="j27" class="joint" fill="#FFFFFF" stroke="#707070" stroke-width="10" stroke-miterlimit="10" cx="1135.311" cy="2039.646" r="64"/>
+                      <circle id="j28" class="joint" fill="#FFFFFF" stroke="#707070" stroke-width="10" stroke-miterlimit="10" cx="1319.427" cy="2039.646" r="64"/>
+                      <circle id="j29" class="joint" fill="#FFFFFF" stroke="#707070" stroke-width="10" stroke-miterlimit="10" cx="1334.4" cy="1229.649" r="64"/>
+                      <circle id="j30" class="joint" fill="#FFFFFF" stroke="#707070" stroke-width="10" stroke-miterlimit="10" cx="698.688" cy="2565.352" r="33.025"/>
+                      <circle id="j31" class="joint" fill="#FFFFFF" stroke="#707070" stroke-width="10" stroke-miterlimit="10" cx="747.979" cy="2629.791" r="33.025"/>
+                      <circle id="j32" class="joint" fill="#FFFFFF" stroke="#707070" stroke-width="10" stroke-miterlimit="10" cx="1641.474" cy="2532.327" r="33.025"/>
+                      <circle id="j33" class="joint" fill="#FFFFFF" stroke="#707070" stroke-width="10" stroke-miterlimit="10" cx="1723.104" cy="2598.377" r="33.025"/>
+                      <circle id="j34" class="joint" fill="#FFFFFF" stroke="#707070" stroke-width="10" stroke-miterlimit="10" cx="1787.161" cy="2662.816" r="33.025"/>
+                      <circle id="j35" class="joint" fill="#FFFFFF" stroke="#707070" stroke-width="10" stroke-miterlimit="10" cx="1694.483" cy="2482.421" r="33.024"/>
+                      <circle id="j36" class="joint" fill="#FFFFFF" stroke="#707070" stroke-width="10" stroke-miterlimit="10" cx="1765.398" cy="2536.89" r="33.025"/>
+                      <circle id="j37" class="joint" fill="#FFFFFF" stroke="#707070" stroke-width="10" stroke-miterlimit="10" cx="1841.398" cy="2582.954" r="33.024"/>
+                      <circle id="j38" class="joint" fill="#FFFFFF" stroke="#707070" stroke-width="10" stroke-miterlimit="10" cx="1741.474" cy="2435.24" r="26.988"/>
+                      <circle id="j39" class="joint" fill="#FFFFFF" stroke="#707070" stroke-width="10" stroke-miterlimit="10" cx="1817.303" cy="2482.118" r="30.302"/>
+                      <circle id="j40" class="joint" fill="#FFFFFF" stroke="#707070" stroke-width="10" stroke-miterlimit="10" cx="1890.834" cy="2519.589" r="30.302"/>
+                      <circle id="j41" class="joint" fill="#FFFFFF" stroke="#707070" stroke-width="10" stroke-miterlimit="10" cx="1781.553" cy="2385.994" r="28.155"/>
+                      <circle id="j42" class="joint" fill="#FFFFFF" stroke="#707070" stroke-width="10" stroke-miterlimit="10" cx="1852.203" cy="2414.148" r="28.154"/>
+                      <circle id="j43" class="joint" fill="#FFFFFF" stroke="#707070" stroke-width="10" stroke-miterlimit="10" cx="1919.991" cy="2442.304" r="28.154"/>
+                      <circle id="j44" class="joint" fill="#FFFFFF" stroke="#707070" stroke-width="10" stroke-miterlimit="10" cx="665.663" cy="2499.614" r="33.025"/>
+                      <circle id="j45" class="joint" fill="#FFFFFF" stroke="#707070" stroke-width="10" stroke-miterlimit="10" cx="635.445" cy="2425.942" r="33.025"/>
+                      <circle id="j46" class="joint" fill="#FFFFFF" stroke="#707070" stroke-width="10" stroke-miterlimit="10" cx="573.351" cy="2466.589" r="30.348"/>
+                      <circle id="j47" class="joint" fill="#FFFFFF" stroke="#707070" stroke-width="10" stroke-miterlimit="10" cx="511.25" cy="2502.633" r="32.75"/>
+                      <circle id="j48" class="joint" fill="#FFFFFF" stroke="#707070" stroke-width="10" stroke-miterlimit="10" cx="535.398" cy="2606.099" r="33.025"/>
+                      <circle id="j49" class="joint" fill="#FFFFFF" stroke="#707070" stroke-width="10" stroke-miterlimit="10" cx="573.398" cy="2695.841" r="33.025"/>
+                      <circle id="j50" class="joint" fill="#FFFFFF" stroke="#707070" stroke-width="10" stroke-miterlimit="10" cx="622.688" cy="2779.202" r="33.025"/>
+                      <circle id="j51" class="joint" fill="#FFFFFF" stroke="#707070" stroke-width="10" stroke-miterlimit="10" cx="680.266" cy="2711.619" r="33.025"/>
+                      <circle id="j52" class="joint" fill="#FFFFFF" stroke="#707070" stroke-width="10" stroke-miterlimit="10" cx="632.638" cy="2629.791" r="33.025"/>
+                      <circle id="j53" class="joint" fill="#FFFFFF" stroke="#707070" stroke-width="10" stroke-miterlimit="10" cx="602.42" cy="2549.928" r="33.025"/>
+                      <circle id="j54" class="joint" fill="#FFFFFF" stroke="#707070" stroke-width="10" stroke-miterlimit="10" cx="731.713" cy="2839.51" r="44"/>
+                      <circle id="j55" class="joint" fill="#FFFFFF" stroke="#707070" stroke-width="10" stroke-miterlimit="10" cx="1702.99" cy="2720.101" r="42.484"/>
+                      <circle id="j56" class="joint" fill="#FFFFFF" stroke="#707070" stroke-width="10" stroke-miterlimit="10" cx="808.262" cy="2711.619" r="44"/>
+                      <circle id="j57" class="joint" fill="#FFFFFF" stroke="#707070" stroke-width="10" stroke-miterlimit="10" cx="1585.027" cy="2606.1" r="44"/>
+                      <circle id="j58" class="joint" fill="#FFFFFF" stroke="#707070" stroke-width="10" stroke-miterlimit="10" cx="2020.452" cy="1955.322" r="38"/>
+                      <circle id="j59" class="joint" fill="#FFFFFF" stroke="#707070" stroke-width="10" stroke-miterlimit="10" cx="1901.773" cy="2031.322" r="38"/>
+                      <circle id="j60" class="joint" fill="#FFFFFF" stroke="#707070" stroke-width="10" stroke-miterlimit="10" cx="1761.104" cy="2053.322" r="38"/>
+                      <circle id="j61" class="joint" fill="#FFFFFF" stroke="#707070" stroke-width="10" stroke-miterlimit="10" cx="1641.474" cy="2039.646" r="31.047"/>
+                      <circle id="j62" class="joint" fill="#FFFFFF" stroke="#707070" stroke-width="10" stroke-miterlimit="10" cx="493.812" cy="1959.568" r="37.386"/>
+                      <circle id="j63" class="joint" fill="#FFFFFF" stroke="#707070" stroke-width="10" stroke-miterlimit="10" cx="603.7" cy="1993.322" r="37.386"/>
+                      <circle id="j64" class="joint" fill="#FFFFFF" stroke="#707070" stroke-width="10" stroke-miterlimit="10" cx="736.688" cy="1996.955" r="37.386"/>
+                      <circle id="j65" class="joint" fill="#FFFFFF" stroke="#707070" stroke-width="10" stroke-miterlimit="10" cx="852.262" cy="1993.322" r="37.386"/>
+                    </g>
+                    <circle id="j66" class="joint das28" fill="#FFFFFF" stroke="#427FD5" stroke-width="10" stroke-miterlimit="10" cx="1617.474" cy="1229.649" r="64"/>
+                    <circle id="j67" class="joint das28" fill="#FFFFFF" stroke="#427FD5" stroke-width="10" stroke-miterlimit="10" cx="846.262" cy="1252.868" r="64"/>
+                    <circle id="j68" class="joint das28" fill="#FFFFFF" stroke="#427FD5" stroke-width="10" stroke-miterlimit="10" cx="1007.311" cy="825.956" r="64"/>
+                    
+                  </g>
+                </g>
+                </svg>
+              </div>
+
+
+              <div class="contents">
+
+                <dl class="legend">
+                  <dt class="tender"></dt>
+                  <dd>Tender</dd>
+
+                  <dt class="swollen"></dt>
+                  <dd>Swollen</dd>
+
+                  <dt class="tenderswollen"></dt>
+                  <dd>Tender &amp; Swollen</dd>
+                </dl>
+              </div>
+            </section>
+            
+            <div id="html">
+              <section class="box disease-activity-scores" id="das">
+                <header>
+                  <h3>Disease Activity Scores</h3>
+                </header>
+                <div class="contents">
+                  <div class="disease-activity-scores-fields">
+
+                    <div class="table">
+
+                      <div class="table-row">
+                        <div class="cell das-label">
+                          <span>DAS28</span></abbr>
+                        </div>
+                        <div class="cell das-score">
+                          <span id="das28-score"><?php if(!empty($_POST['das28-score'])): echo htmlspecialchars($_POST['das28-score']); else: echo ''; endif; ?></span>
+                        </div>
+                        <div class="cell das-rating">
+                          <span id="das28-rating"><?php if(!empty($_POST['das28-rating'])): echo htmlspecialchars($_POST['das28-rating']); else: echo ''; endif; ?></span>
+                        </div>
+                      </div>
+
+                      <div class="table-row">
+                        <div class="cell das-label">
+                          <span>DAS28-CRP</span>
+                        </div>
+                        <div class="cell das-score">
+                          <span id="das28crp-score"><?php if(!empty($_POST['das28crp-score'])): echo htmlspecialchars($_POST['das28crp-score']); else: echo ''; endif; ?></span>
+                        </div>
+                        <div class="cell das-rating">
+                          <span id="das28crp-rating"><?php if(!empty($_POST['das28crp-rating'])): echo htmlspecialchars($_POST['das28crp-rating']); else: echo ''; endif; ?></span>
+                        </div>
+                      </div>
+
+                      <div class="table-row">
+                        <div class="cell das-label">
+                          <span>SDAI</span>
+                        </div>
+                        <div class="cell das-score">
+                          <span id="sdai-score"><?php if(!empty($_POST['sdai-score'])): echo htmlspecialchars($_POST['sdai-score']); else: echo ''; endif; ?></span>
+                        </div>
+                        <div class="cell das-rating">
+                          <span id="sdai-rating"><?php if(!empty($_POST['sdai-rating'])): echo htmlspecialchars($_POST['sdai-rating']); else: echo ''; endif; ?></span>
+                        </div>
+                      </div>
+
+                      <div class="table-row">
+                        <div class="cell das-label">
+                          <span>CDAI</span>
+                        </div>
+                        <div class="cell das-score">
+                          <span id="cdai-score"><?php if(!empty($_POST['cdai-score'])): echo htmlspecialchars($_POST['cdai-score']); else: echo ''; endif; ?></span>
+                        </div>
+                        <div class="cell das-rating">
+                          <span id="cdai-rating"><?php if(!empty($_POST['cdai-rating'])): echo htmlspecialchars($_POST['cdai-rating']); else: echo ''; endif; ?></span>
+                        </div>
+                      </div>
+                      
+                    </div>
+
+                  </div>
+                </div>
+              </section>
+
+              <section class="box joint-scores clearfix">
+                <div class="contents">
+                  <div class="joint-scores-fields" id="28-joint-scores-fields">
+                    <header>
+                      <h3>28 Joint Scores</h3>
+                    </header>
+                    
+
+                    <p>
+                      <label>Tender:</label>
+                      <?php echo htmlspecialchars($_POST['28-tender']); ?>
+                    </p>
+
+                    <p>
+                      <label for="28-swollen">Swollen:</label>
+                      <?php echo htmlspecialchars($_POST['28-swollen']); ?>
+                    </p>
+
+                  </div>
+
+                  <hr class="divider">
+
+                  <div class="joint-scores-fields" id="68-joint-scores-fields">
+                    <header>
+                      <h3>66/68 Joint Scores</h3>
+                    </header>
+
+                    <p>
+                      <label>Tender:</label>
+                      <?php echo htmlspecialchars($_POST['68-tender']); ?>
+                    </p>
+
+                    <p>
+                      <label>Swollen:</label>
+                      <?php echo htmlspecialchars($_POST['68-swollen']); ?>
+                    </p>
+
+                  </div>
+
+                  <div class="clearfix"></div>
+
+                </div>
+              </section>
+
+              <section class="box additional-measures">
+                <div class="contents">
+                  <div class="additional-measures-fields" id="additional-measures-fields">
+
+                    <header>
+                      <h3>Additional Measures</h3>
+                    </header>
+                    
+                    <div class="esr-crp">
+                      <!-- ESR -->
+                      <p class="esr">
+                        <label>ESR (mm/hr):</label>
+                        <?php echo htmlspecialchars($_POST['esr']); ?>
+                      </p>
+
+                      <!-- CRP -->
+                      <p class="crp">
+                        <label>CRP (mg/l):</label>
+                        <?php echo htmlspecialchars($_POST['crp']); ?>
+                      </p>
+                    </div>
+                    
+                    <div class="global-health">
+                      <!-- Patient Global Health -->
+                      <p class="ptgh">
+                        <label>Patient Global Health:</label>
+                        <?php echo htmlspecialchars($_POST['ptgh']); ?>/10
+                      </p>
+                      
+                      <!-- Physician Global Health -->
+                      <p class="phgh">
+                        <label>Physician Global Health:</label>
+                        <?php echo htmlspecialchars($_POST['phgh']); ?>/10
+                      </p>
+                    </div>
+                    
+                  </div>
+
+                  <div class="additional-information-fields" id="additional-information-fields">
+
+                    <header>
+                      <h3>Current Medications</h3>
+                    </header>
+                    <p>
+                      <?php echo nl2br(htmlspecialchars($_POST['current-medications'])); ?>
+                    </p>
+
+                  </div> 
+
+
+                </div>
+              </section>
+              <div class="clear"></div>
+            </div> <!-- #html -->
+
+
+        </div> <!-- .row -->
+      </div> <!-- #page -->
+    </body>
+
+
+    <!-- jQuery -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+    <!-- Bootstrap -->
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/vendor/canvg/rgbcolor.js"></script> 
+    <script type="text/javascript" src="js/vendor/canvg/StackBlur.js"></script>
+    <script type="text/javascript" src="js/vendor/canvg/canvg.js"></script> 
+    <script type="text/javascript" src="js/vendor/html2canvas.js"></script> 
+    
+    <script type="text/javascript">
+      var exportType = <?php echo json_encode($export_type); ?>;
+      var emailAddress = <?php echo json_encode($email_address); ?>;
+      var tenderJoints = <?php echo json_encode($_POST['tender-joint-list']); ?>;
+      var swollenJoints = <?php echo json_encode($_POST['swollen-joint-list']); ?>;
+      var tenderswollenJoints = <?php echo json_encode($_POST['tenderswollen-joint-list']); ?>;
+    </script>
+
+    <script type="text/javascript" src="js/rheumexport.js?v=1.2"></script>
+
+</html>

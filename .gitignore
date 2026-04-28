@@ -1,0 +1,22 @@
+# Server / host artifacts
+.ftpquota
+error_log
+*.log
+
+# Generated / transient
+temp/*
+!temp/.gitkeep
+HAQ_DI/save/*
+!HAQ_DI/save/.gitkeep
+HAQ_DI/error_log
+*.css.map
+
+# Local config & secrets
+config.php
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
