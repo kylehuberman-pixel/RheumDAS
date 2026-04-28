@@ -10,20 +10,8 @@ $success = false;
 $valid_email = false;
 
 if (isset($_POST['emailTo'])) {
-
   $email_to = $_POST['emailTo'];
-
-  if (filter_var($email_to, FILTER_VALIDATE_EMAIL)) {
-
-    $valid_email = true;
-
-    $parts = explode('@', $email_to);
-    $domain = array_pop($parts);
-
-    if (checkdnsrr($domain, 'MX')) {
-      $valid_email = true;
-    }
-  }
+  $valid_email = filter_var($email_to, FILTER_VALIDATE_EMAIL) !== false;
 }
 
 
