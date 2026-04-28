@@ -1,8 +1,10 @@
 <?php
 require_once 'config.php';
+require_once 'lib/temp_gc.php';
 
-// SAVE IMAGE TO SERVER
 define('UPLOAD_DIR', 'temp/');
+
+temp_gc(UPLOAD_DIR);
 
 $success = false;
 $valid_email = false;

@@ -1,7 +1,9 @@
 <?php
-  // SAVE IMAGE TO SERVER
-  // requires php5
+  require_once 'lib/temp_gc.php';
+
   define('UPLOAD_DIR', 'temp/');
+
+  temp_gc(UPLOAD_DIR);
 
   $success = false;
 
