@@ -2,6 +2,14 @@
 // CSRF token issuance and validation.
 // Token lives in $_SESSION; included as a <meta> tag for AJAX (read in JS,
 // sent as X-CSRF-Token header) and as a hidden input for form submits.
+//
+// Important: this file starts the session at include time so the session
+// cookie can be set in headers before any HTML output. Entry pages MUST
+// `require_once` this file before emitting any markup.
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 function csrf_start_session()
 {
