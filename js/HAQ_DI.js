@@ -136,8 +136,9 @@ function submitForm(type) {
             inputAction.value = type;
             $.post('actions.php', $(form).serializeControls(), res => {
                 popupNotification(res, res === 'Message has been sent');
-            }).fail(function () {
-                popupNotification('Oops!', false);
+            }).fail(function (xhr) {
+                var msg = (xhr && xhr.responseJSON && xhr.responseJSON.message) || 'Oops!';
+                popupNotification(msg, false);
             });
         }
     }

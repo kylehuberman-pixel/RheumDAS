@@ -11,9 +11,13 @@ if ($action == 'print') {
 
     if ($action == 'send') {
 
-        $validEmail = false;
-        $emailTo = $_POST['email'];
-        if (!filter_var($emailTo, FILTER_VALIDATE_EMAIL)) die('Invalid email');
+        $emailTo = $_POST['email'] ?? '';
+        if (!filter_var($emailTo, FILTER_VALIDATE_EMAIL)) {
+            http_response_code(400);
+            header('Content-Type: application/json');
+            echo json_encode(['status' => 'failure', 'message' => 'Invalid email']);
+            exit;
+        }
 
         echo send($emailTo, 'Health Assessment Questionnaire for Rheumatoid Arthritis')['message'];
     } else if ($action == 'specialist') {
