@@ -7,9 +7,23 @@ Redirect 301 /about /about.php
 
 # Defense-in-depth: never serve config.php as plaintext, even if the
 # PHP handler is misconfigured. config.php holds the Postmark token.
+# IfModule branches keep the file valid on both Apache 2.4 (mod_authz_core)
+# and Apache 2.2 (legacy Order/Deny syntax).
 <Files "config.php">
-    Require all denied
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order deny,allow
+        Deny from all
+    </IfModule>
 </Files>
 <Files "config.example.php">
-    Require all denied
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order deny,allow
+        Deny from all
+    </IfModule>
 </Files>
