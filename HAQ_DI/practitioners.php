@@ -15,7 +15,7 @@ $practitioners = [
     ],
     (object)[
         "name" => "Dr. Alison Clifford",
-        "email" => "Kathleen.Hinton@albertahealthservices.ca"
+        "email" => "airish.valdez@covenanthealth.ca"
     ],
     (object)[
         "name" => "Dr. Jan Willem Cohen Tervaert",
@@ -35,7 +35,7 @@ $practitioners = [
     ],
     (object)[
         "name" => "Dr. Steven Katz",
-        "email" => "Linda.Tran3@albertahealthservices.ca;steven.katz@ualberta.ca"
+        "email" => "steven.katz@kingstonhsc.ca"
     ],
     (object)[
         "name" => "Dr. Stephanie Keeling",
@@ -51,7 +51,7 @@ $practitioners = [
     ],
     (object)[
         "name" => "Dr. Mohammed Osman",
-        "email" => "linda.Tran3@albertahealthservices.ca"
+        "email" => "Linda.Tran3@albertahealthservices.ca"
     ],
     (object)[
         "name" => "Dr. Anna Oswald",
@@ -71,7 +71,7 @@ $practitioners = [
     ],
     (object)[
         "name" => "Dr. Anthony Russell",
-        "email" => "as.russell@ualberta.ca"
+        "email" => "Catherine.Brown@albertahealthservices.ca"
     ],
     (object)[
         "name" => "Dr. Dale Sholter",
@@ -83,11 +83,11 @@ $practitioners = [
     ],
     (object)[
         "name" => "Dr. Sarah Troster",
-        "email" => "Karyn.Murray@albertahealthservices.ca"
+        "email" => "cory.tait-crawford@healthsharedservices.ca"
     ],
     (object)[
         "name" => "Dr. Elaine Yacyshyn",
-        "email" => "Karyn.Murray@albertahealthservices.ca"
+        "email" => "cory.tait-crawford@healthsharedservices.ca"
     ],
     (object)[
         "name" => "Dr. Carrie Ye",
@@ -95,11 +95,11 @@ $practitioners = [
     ],
     (object)[
         "name" => "Dr. Shahad Al-Matar",
-        "email" => "catherine.Brown@albertahealthservices.ca"
+        "email" => "cory.tait-crawford@healthsharedservices.ca"
     ],
     (object)[
         "name" => "Dr. Dylan Johnson",
-        "email" => "karyn.Murray@albertahealthservices.ca"
+        "email" => "Linda.Tran3@albertahealthservices.ca"
     ],
         (object)[
         "name" => "Dr. Justin Smith",
