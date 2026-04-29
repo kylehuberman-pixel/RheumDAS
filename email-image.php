@@ -61,19 +61,29 @@ try {
     $curlError = curl_error($ch);
     curl_close($ch);
 
-    $result = json_decode($response, true);
+    $fileBytes   = file_exists($file) ? filesize($file) : -1;
+    $postedBytes = strlen($_POST['imgBase64'] ?? '');
+    $attachBytes = strlen($payload['Attachments'][0]['Content']);
 
-    if ($httpCode === 200 && isset($result['ErrorCode']) && $result['ErrorCode'] === 0) {
+    $result = json_decode($response, true);
+    $ok = ($httpCode === 200 && isset($result['ErrorCode']) && $result['ErrorCode'] === 0);
+
+    error_log(sprintf(
+      'Postmark send (export): ok=%d http=%d posted_bytes=%d file_bytes=%d attach_b64=%d errno=%d err=%s response=%s',
+      $ok ? 1 : 0,
+      $httpCode,
+      $postedBytes,
+      $fileBytes,
+      $attachBytes,
+      $curlErrno,
+      $curlError,
+      is_string($response) ? substr($response, 0, 500) : 'false'
+    ));
+
+    if ($ok) {
       $return_data['status'] = 'success';
       $return_data['message'] = 'Message has been sent';
     } else {
-      error_log(sprintf(
-        'Postmark send failed (export): http=%d curl_errno=%d curl_error=%s response=%s',
-        $httpCode,
-        $curlErrno,
-        $curlError,
-        is_string($response) ? substr($response, 0, 500) : 'false'
-      ));
       $return_data['status'] = 'failure';
       $return_data['message'] = $result['Message']
         ?? ($curlError !== '' ? "Network error: {$curlError}" : "Postmark returned HTTP {$httpCode}");

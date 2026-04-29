@@ -56,21 +56,30 @@ function send($to, $body)
     $curlError = curl_error($ch);
     curl_close($ch);
 
+    $fileBytes   = file_exists($file) ? filesize($file) : -1;
+    $attachBytes = strlen($payload['Attachments'][0]['Content']);
+    $bodyBytes   = strlen($payload['HtmlBody'] ?? '');
+
     unlink($file);
 
     $result = json_decode($response, true);
-
-    if ($httpCode === 200 && isset($result['ErrorCode']) && $result['ErrorCode'] === 0) {
-        return ['status' => 'success', 'message' => 'Message has been sent'];
-    }
+    $ok = ($httpCode === 200 && isset($result['ErrorCode']) && $result['ErrorCode'] === 0);
 
     error_log(sprintf(
-        'Postmark send failed (HAQ_DI): http=%d curl_errno=%d curl_error=%s response=%s',
+        'Postmark send (HAQ_DI): ok=%d http=%d file_bytes=%d attach_b64=%d body_bytes=%d errno=%d err=%s response=%s',
+        $ok ? 1 : 0,
         $httpCode,
+        $fileBytes,
+        $attachBytes,
+        $bodyBytes,
         $curlErrno,
         $curlError,
         is_string($response) ? substr($response, 0, 500) : 'false'
     ));
+
+    if ($ok) {
+        return ['status' => 'success', 'message' => 'Message has been sent'];
+    }
 
     $userMessage = $result['Message']
         ?? ($curlError !== '' ? "Network error: {$curlError}" : "Postmark returned HTTP {$httpCode}");
