@@ -50,8 +50,10 @@ function send($to, $body)
         ],
         CURLOPT_POSTFIELDS     => json_encode($payload),
     ]);
-    $response = curl_exec($ch);
-    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    $response  = curl_exec($ch);
+    $httpCode  = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    $curlErrno = curl_errno($ch);
+    $curlError = curl_error($ch);
     curl_close($ch);
 
     unlink($file);
@@ -62,8 +64,16 @@ function send($to, $body)
         return ['status' => 'success', 'message' => 'Message has been sent'];
     }
 
-    return [
-        'status'  => 'failure',
-        'message' => $result['Message'] ?? 'Message could not be sent.',
-    ];
+    error_log(sprintf(
+        'Postmark send failed (HAQ_DI): http=%d curl_errno=%d curl_error=%s response=%s',
+        $httpCode,
+        $curlErrno,
+        $curlError,
+        is_string($response) ? substr($response, 0, 500) : 'false'
+    ));
+
+    $userMessage = $result['Message']
+        ?? ($curlError !== '' ? "Network error: {$curlError}" : "Postmark returned HTTP {$httpCode}");
+
+    return ['status' => 'failure', 'message' => $userMessage];
 }

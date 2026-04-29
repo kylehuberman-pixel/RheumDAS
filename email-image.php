@@ -55,8 +55,10 @@ try {
       ],
       CURLOPT_POSTFIELDS     => json_encode($payload),
     ]);
-    $response = curl_exec($ch);
-    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    $response  = curl_exec($ch);
+    $httpCode  = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    $curlErrno = curl_errno($ch);
+    $curlError = curl_error($ch);
     curl_close($ch);
 
     $result = json_decode($response, true);
@@ -65,8 +67,16 @@ try {
       $return_data['status'] = 'success';
       $return_data['message'] = 'Message has been sent';
     } else {
+      error_log(sprintf(
+        'Postmark send failed (export): http=%d curl_errno=%d curl_error=%s response=%s',
+        $httpCode,
+        $curlErrno,
+        $curlError,
+        is_string($response) ? substr($response, 0, 500) : 'false'
+      ));
       $return_data['status'] = 'failure';
-      $return_data['message'] = $result['Message'] ?? 'Message could not be sent.';
+      $return_data['message'] = $result['Message']
+        ?? ($curlError !== '' ? "Network error: {$curlError}" : "Postmark returned HTTP {$httpCode}");
     }
   } else {
     if (!$valid_email) {
