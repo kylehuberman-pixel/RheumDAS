@@ -15,11 +15,15 @@ function createFile($name)
     }
     $html = ob_get_clean();
 
+    // DEBUG: save the rendered HTML and PDF to known paths so we can
+    // grab them off the server via FTP and see what DOMPDF actually
+    // received and produced.
+    file_put_contents(__DIR__ . '/save/last-render.html', $html);
+
     error_log(sprintf(
-        'createFile: html_len=%d render_err=%s html_head=%s',
+        'createFile: html_len=%d render_err=%s saved=save/last-render.html',
         strlen($html),
-        $renderError ?? 'none',
-        json_encode(substr($html, 0, 300))
+        $renderError ?? 'none'
     ));
 
     $safeName = preg_replace('/[^A-Za-z0-9_-]/', '_', $name);
@@ -29,7 +33,9 @@ function createFile($name)
     $dompdf->loadHtml($html);
     $dompdf->render();
 
-    file_put_contents($path, $dompdf->output());
+    $pdfBytes = $dompdf->output();
+    file_put_contents($path, $pdfBytes);
+    file_put_contents(__DIR__ . '/save/last-render.pdf', $pdfBytes);
 
     return $path;
 }
