@@ -4,6 +4,27 @@ csrf_check();
 
 $action = isset($_POST['action']) ? $_POST['action'] : 'send';
 
+// Diagnostic: capture shape of incoming POST so we can see whether
+// the questions[]/scores form data actually reached the server.
+$qCount = isset($_POST['questions']) && is_array($_POST['questions'])
+    ? count($_POST['questions']) : -1;
+$qSample = '';
+if ($qCount > 0) {
+    $first = reset($_POST['questions']);
+    $qSample = is_array($first)
+        ? 'first_keys=[' . implode(',', array_keys($first)) . ']'
+        : 'first_scalar';
+}
+error_log(sprintf(
+    'actions.php action=%s POST_keys=[%s] questions_count=%d %s scores=%s max_input_vars=%s',
+    $action,
+    implode(',', array_keys($_POST)),
+    $qCount,
+    $qSample,
+    isset($_POST['scores']) ? ('"' . substr((string)$_POST['scores'], 0, 60) . '"') : 'MISSING',
+    ini_get('max_input_vars') ?: '(unset)'
+));
+
 if ($action == 'print') {
     include 'print.php';
 } else {
