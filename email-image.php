@@ -44,7 +44,7 @@ try {
       ]],
     ];
 
-    $ch = curl_init('https://api.postmarkapp.com/email/withAttachments');
+    $ch = curl_init('https://api.postmarkapp.com/email');
     curl_setopt_array($ch, [
       CURLOPT_RETURNTRANSFER => true,
       CURLOPT_POST           => true,
