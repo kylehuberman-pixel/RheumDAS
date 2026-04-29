@@ -7,12 +7,26 @@ use Dompdf\Dompdf;
 function createFile($name)
 {
     ob_start();
-    include __DIR__ . '/pdf.php';
+    $renderError = null;
+    try {
+        include __DIR__ . '/pdf.php';
+    } catch (\Throwable $e) {
+        $renderError = $e->getMessage() . ' @ ' . $e->getFile() . ':' . $e->getLine();
+    }
+    $html = ob_get_clean();
+
+    error_log(sprintf(
+        'createFile: html_len=%d render_err=%s html_head=%s',
+        strlen($html),
+        $renderError ?? 'none',
+        json_encode(substr($html, 0, 300))
+    ));
+
     $safeName = preg_replace('/[^A-Za-z0-9_-]/', '_', $name);
     $path = __DIR__ . '/save/' . $safeName . '.pdf';
 
     $dompdf = new Dompdf();
-    $dompdf->loadHtml(ob_get_clean());
+    $dompdf->loadHtml($html);
     $dompdf->render();
 
     file_put_contents($path, $dompdf->output());
