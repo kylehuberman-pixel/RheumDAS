@@ -109,4 +109,8 @@ $practitioners = [
         "name" => "Dr. Whitney Hung",
         "email" => "Catherine.Brown@albertahealthservices.ca"
     ],
+    (object)[
+        "name" => "Dr. Mala Joneja",
+        "email" => "rochonk@queensu.ca"
+    ],
 ];
